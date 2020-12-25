@@ -1,16 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import store from 'store';
+import 'styles/style.scss';
+import reportWebVitals from './reportWebVitals';
+import Router from './Router';
 
-reportWebVitals(console.log);
+// reportWebVitals(console.log);
+
+console.log('redux store data', store);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<Router />
+	</React.StrictMode>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
