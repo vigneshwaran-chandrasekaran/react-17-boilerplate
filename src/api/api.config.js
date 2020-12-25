@@ -42,12 +42,15 @@ axios.interceptors.request.use(
 		}
 		config.headers = {
 			// 'Content-Type': 'application/json',
-			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-			crossorigin: true,
+			// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+			'Access-Control-Expose-Headers':
+				'WWW-Authenticate,Server-Authorization',
+			// crossorigin: true,
 		};
-		config.headers['Access-Control-Allow-Origin'] = '*';
-		config.headers['Access-Control-Allow-Credentials'] = true;
-		config.headers['Access-Control-Allow-Headers'] = '*';
+		config.headers['Access-Control-Allow-Origin'] =
+			'https://task-management-rest-app.herokuapp.com';
+		// config.headers['Access-Control-Allow-Credentials'] = true;
+		// config.headers['Access-Control-Allow-Headers'] = '*';
 
 		try {
 			if (!isEmpty(userInfo)) {

@@ -2,7 +2,7 @@
   "name": "react-17-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3601",
+  "proxy": "https://task-management-rest-app.herokuapp.com/api",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@reduxjs/toolkit": "^1.5.0",
@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "formik-antd": "^2.0.1",
+    "http-proxy-middleware": "^1.0.6",
     "husky": "^4.3.6",
     "js-sha512": "^0.8.0",
     "lint-staged": "^10.5.3",
