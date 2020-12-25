@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import store from 'store';
+import { ThemeProvider } from 'styled-components';
 import 'styles/style.scss';
 import reportWebVitals from './reportWebVitals';
 import Router from './Router';
@@ -9,9 +11,21 @@ import Router from './Router';
 
 console.log('redux store data', store);
 
+const theme = {
+	main: 'mediumseagreen',
+	gray_1: '#989989',
+	red: 'red',
+};
+
+console.log('theme store data', theme);
+
 ReactDOM.render(
 	<React.StrictMode>
-		<Router />
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<Router />
+			</ThemeProvider>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

@@ -25,7 +25,7 @@ let userInfo;
  * set baseurl for all axios request
  */
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.withCredentials = true; // to allow cookie to api request
+axios.defaults.withCredentials = false; // to allow cookie to api request
 axios.defaults.timeout = 8000; // Max timeout
 
 // Add a request interceptor
@@ -40,6 +40,14 @@ axios.interceptors.request.use(
 			 */
 			userInfo = getUserInfo();
 		}
+		config.headers = {
+			// 'Content-Type': 'application/json',
+			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+			crossorigin: true,
+		};
+		config.headers['Access-Control-Allow-Origin'] = '*';
+		config.headers['Access-Control-Allow-Credentials'] = true;
+		config.headers['Access-Control-Allow-Headers'] = '*';
 
 		try {
 			if (!isEmpty(userInfo)) {
