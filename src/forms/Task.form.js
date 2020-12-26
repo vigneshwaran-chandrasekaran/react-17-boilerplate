@@ -29,7 +29,7 @@ let initialValues = {
 	label: undefined,
 };
 
-const options = [
+const labelOptions = [
 	{ label: 'Apple', value: 1 },
 	{ label: 'Pear', value: 2 },
 	{ label: 'Orange', value: 3 },
@@ -41,6 +41,12 @@ const priorityTypes = [
 	{ label: 'High', value: 1 },
 	{ label: 'Medium', value: 2 },
 	{ label: 'Low', value: 3 },
+];
+
+const typeOptions = [
+	{ label: 'Task', value: 1 },
+	{ label: 'Story', value: 2 },
+	{ label: 'Bug', value: 3 },
 ];
 
 function TaskForm() {
@@ -72,7 +78,7 @@ function TaskForm() {
 			validationSchema={FormSchema}
 			onSubmit={handleSubmit}
 		>
-			{({ values, isSubmitting, resetForm }) => (
+			{({ setFieldValue, isSubmitting, resetForm }) => (
 				<Form layout="vertical" hideRequiredMark>
 					<div
 						style={{
@@ -135,11 +141,16 @@ function TaskForm() {
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Radio.Group name="type">
-										<Radio value={1}>Task</Radio>
-										<Radio value={2}>Story</Radio>
-										<Radio value={3}>Bug</Radio>
-									</Radio.Group>
+									<Radio.Group
+										name="type"
+										options={typeOptions}
+										onChange={(e) => {
+											setFieldValue(
+												'type',
+												e.target.value
+											);
+										}}
+									/>
 								</Form.Item>
 							</Col>
 						</Row>
@@ -182,8 +193,7 @@ function TaskForm() {
 								>
 									<Checkbox.Group
 										name="label"
-										options={options}
-										defaultValue={[1, 2]}
+										options={labelOptions}
 									/>
 								</Form.Item>
 							</Col>
