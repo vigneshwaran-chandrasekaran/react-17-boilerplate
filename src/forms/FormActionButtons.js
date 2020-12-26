@@ -25,7 +25,7 @@ function FormActionButtons({
 					span={24}
 					style={{
 						textAlign: buttonAlignment,
-						paddingTop: '50px',
+						paddingTop: '25px',
 					}}
 				>
 					{showCancel && (

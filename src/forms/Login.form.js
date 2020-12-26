@@ -74,7 +74,7 @@ function LoginForm() {
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input name="email" />
+									<Input name="email" placeholder="Email" />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -90,7 +90,10 @@ function LoginForm() {
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input.Password name="password" />
+									<Input.Password
+										name="password"
+										placeholder="Password"
+									/>
 								</Form.Item>
 							</Col>
 						</Row>
