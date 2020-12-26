@@ -21,7 +21,7 @@ let initialValues = {
 	password: undefined,
 };
 
-function SignupForm() {
+function TaskForm() {
 	const dispatch = useDispatch();
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
@@ -133,4 +133,4 @@ function SignupForm() {
 	);
 }
 
-export default SignupForm;
+export default TaskForm;

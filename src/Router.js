@@ -35,6 +35,11 @@ export default function Router() {
 										Login
 									</Link>
 								</Menu.Item>
+								<Menu.Item key="4">
+									<Link to="/tasks" className="link">
+										Tasks
+									</Link>
+								</Menu.Item>
 							</Menu>
 						</Header>
 						<Content>
@@ -47,6 +52,9 @@ export default function Router() {
 								</AuthRoute>
 								<AuthRoute exact path="/signup">
 									<Pages.Signup />
+								</AuthRoute>
+								<AuthRoute exact path="/tasks">
+									<Pages.Tasks />
 								</AuthRoute>
 							</Switch>
 						</Content>
