@@ -10,6 +10,7 @@ export const appSlice = createSlice({
 	initialState,
 	reducers: {
 		showLoader: (state) => {
+			console.log('show loader');
 			state.loading = true;
 		},
 		hideLoader: (state) => {
@@ -23,6 +24,6 @@ export const appSlice = createSlice({
 
 export const { showLoader, hideLoader, setRecentUrl } = appSlice.actions;
 
-console.log('appSlice inside', appSlice);
+// console.log('appSlice inside', appSlice);
 
 export default appSlice.reducer;

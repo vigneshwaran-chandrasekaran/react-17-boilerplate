@@ -12,6 +12,7 @@ function FormActionButtons({
 	buttonAlignment = 'center',
 	showDebug = true,
 	saveText = 'Save',
+	cancelText = 'Cancel',
 }) {
 	return (
 		<>
@@ -35,7 +36,7 @@ function FormActionButtons({
 								marginRight: 20,
 							}}
 						>
-							Cancel
+							{cancelText}
 						</Button>
 					)}
 

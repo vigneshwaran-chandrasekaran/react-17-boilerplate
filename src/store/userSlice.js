@@ -112,6 +112,6 @@ export function setLocalData(UserData) {
 	}
 }
 
-console.log('userSlice inside', userSlice);
+// console.log('userSlice inside', userSlice);
 
 export default userSlice.reducer;

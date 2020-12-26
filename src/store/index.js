@@ -3,8 +3,8 @@ import { redirectToLogin } from 'api/authentication';
 import appSlice from './appSlice';
 import { getPreloadedState, saveToLocalStorage } from './localStorage';
 import userSlice from './userSlice';
-console.log('userSlice reducer 1', userSlice);
-console.log('appSlice reducer 2', appSlice);
+// console.log('userSlice reducer 1', userSlice);
+// console.log('appSlice reducer 2', appSlice);
 
 const combinedReducer = combineReducers({
 	app: appSlice,
@@ -12,8 +12,8 @@ const combinedReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-	console.log('rootReducer state', state);
-	console.log('rootReducer action', action);
+	// console.log('rootReducer state', state);
+	// console.log('rootReducer action', action);
 	if (action.type === 'user/logout') {
 		state = undefined;
 		redirectToLogin();
@@ -32,7 +32,7 @@ function onStateChange() {
 
 store.subscribe(onStateChange);
 
-console.log('store data', store);
+// console.log('store data', store);
 
 export default store;
 

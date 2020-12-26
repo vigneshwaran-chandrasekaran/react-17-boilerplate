@@ -9,7 +9,7 @@ import Router from './Router';
 
 // reportWebVitals(console.log);
 
-console.log('redux store data', store);
+// console.log('redux store data', store);
 
 const theme = {
 	main: 'mediumseagreen',
@@ -17,7 +17,7 @@ const theme = {
 	red: 'red',
 };
 
-console.log('theme store data', theme);
+// console.log('theme store data', theme);
 
 ReactDOM.render(
 	<React.StrictMode>

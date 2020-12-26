@@ -29,7 +29,7 @@ function LoginForm() {
 		};
 	}
 
-	console.log('store initialValues', initialValues);
+	// console.log('store initialValues', initialValues);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		/**
@@ -100,6 +100,7 @@ function LoginForm() {
 						isSubmitting={isSubmitting}
 						showDebug={false}
 						saveText="Login"
+						cancelText="Reset"
 					/>
 				</Form>
 			)}

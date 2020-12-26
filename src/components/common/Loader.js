@@ -1,20 +1,27 @@
-import animationData from 'assets/kite-loader.json';
-import React from 'react';
+import kiteLoader from 'assets/kite-loader.json';
+// import spinner from 'assets/spinner.json';
+// import loading from 'assets/loading.json';
+// import wheels from 'assets/wheels.json';
+import React, { useEffect } from 'react';
 import Lottie from 'react-lottie';
 import { useSelector } from 'react-redux';
 
+const defaultOptions = {
+	loop: true,
+	autoplay: true,
+	animationData: kiteLoader,
+	rendererSettings: {
+		preserveAspectRatio: 'xMidYMid slice',
+	},
+};
+
 export default function Loader() {
-	const loader = useSelector((state) => state.app.loading) || false;
+	const loader = useSelector((state) => state?.app?.loading) || false;
 	// const loader = true;
 
-	const defaultOptions = {
-		loop: true,
-		autoplay: true,
-		animationData: animationData,
-		rendererSettings: {
-			preserveAspectRatio: 'xMidYMid slice',
-		},
-	};
+	useEffect(() => {
+		console.log('loader', loader);
+	}, [loader]);
 
 	return (
 		<>
