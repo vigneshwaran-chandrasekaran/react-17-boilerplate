@@ -8,7 +8,7 @@ import { userLogin } from 'store/userSlice';
 import * as Yup from 'yup';
 
 const FormSchema = Yup.object({
-	email: Yup.string().required().label('Email'),
+	email: Yup.string().email().required().label('Email'),
 	password: Yup.string().required().label('Password'),
 });
 

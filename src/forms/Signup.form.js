@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 const FormSchema = Yup.object({
 	firstName: Yup.string().required().label('Firstname'),
 	lastName: Yup.string().required().label('Lastname'),
-	email: Yup.string().required().label('Email'),
+	email: Yup.string().email().required().label('Email'),
 	password: Yup.string().required().label('Password'),
 });
 
