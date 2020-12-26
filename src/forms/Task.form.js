@@ -1,25 +1,47 @@
 import { Col, Row } from 'antd';
 import { Formik } from 'formik';
-import { Form, Input } from 'formik-antd';
+import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'store/userSlice';
 import * as Yup from 'yup';
 
+const { Option } = Select;
+
 const FormSchema = Yup.object({
-	firstName: Yup.string().required().label('Firstname'),
-	lastName: Yup.string().required().label('Lastname'),
-	email: Yup.string().email().required().label('Email'),
-	password: Yup.string().required().label('Password'),
+	title: Yup.string().required().label('Title'),
+	description: Yup.string().required().label('Description'),
+	dueDate: Yup.string().required().label('Due Date'),
+	label: Yup.array()
+		.required('Label required')
+		.min(1, 'Min one label required'),
+	priority: Yup.number().required().label('Priority'),
+	type: Yup.number().required().label('Type'),
 });
 
 let initialValues = {
-	firstName: undefined,
-	lastName: undefined,
-	email: undefined,
-	password: undefined,
+	title: undefined,
+	description: undefined,
+	dueDate: undefined,
+	label: undefined,
+	type: undefined,
+	priority: undefined,
 };
+
+const options = [
+	{ label: 'Apple', value: 1 },
+	{ label: 'Pear', value: 2 },
+	{ label: 'Orange', value: 3 },
+	{ label: 'One', value: 4 },
+	{ label: 'Two', value: 5 },
+];
+
+const priorityTypes = [
+	{ label: 'High', value: 1 },
+	{ label: 'Medium', value: 2 },
+	{ label: 'Low', value: 3 },
+];
 
 function TaskForm() {
 	const dispatch = useDispatch();
@@ -36,7 +58,7 @@ function TaskForm() {
 				resetForm();
 			})
 			.catch((e) => {
-				console.log('updateCamera catch', e);
+				console.log('Task form catch', e);
 			})
 			.finally(() => {
 				setSubmitting(false);
@@ -63,27 +85,27 @@ function TaskForm() {
 						<Row gutter={8} justify="space-between">
 							<Col span={24}>
 								<Form.Item
-									name="firstName"
+									name="title"
+									label="Title"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input
-										name="firstName"
-										placeholder="Firstname"
-									/>
+									<Input name="title" placeholder="Title" />
 								</Form.Item>
 							</Col>
 						</Row>
 						<Row gutter={8} justify="space-between">
 							<Col span={24}>
 								<Form.Item
-									name="lastName"
+									name="description"
+									label="Description"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input
-										name="lastName"
-										placeholder="Lastname"
+									<Input.TextArea
+										name="description"
+										placeholder="Description"
+										rows={4}
 									/>
 								</Form.Item>
 							</Col>
@@ -92,11 +114,16 @@ function TaskForm() {
 						<Row gutter={8} justify="space-between">
 							<Col span={24}>
 								<Form.Item
-									name="email"
+									name="label"
+									label="Label"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input name="email" placeholder="Email" />
+									<Checkbox.Group
+										name="label"
+										options={options}
+										defaultValue={[1, 2]}
+									/>
 								</Form.Item>
 							</Col>
 						</Row>
@@ -108,13 +135,68 @@ function TaskForm() {
 						>
 							<Col span={24}>
 								<Form.Item
-									name="password"
+									name="type"
+									label="Type"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input.Password
-										name="password"
-										placeholder="Password"
+									<Radio.Group name="type">
+										<Radio value={1}>Task</Radio>
+										<Radio value={2}>Story</Radio>
+										<Radio value={3}>Bug</Radio>
+									</Radio.Group>
+								</Form.Item>
+							</Col>
+						</Row>
+
+						<Row
+							gutter={8}
+							justify="space-between"
+							className="mt-30"
+						>
+							<Col span={24}>
+								<Form.Item
+									name="priority"
+									label="Priority"
+									hasFeedback={false}
+									showValidateSuccess={false}
+								>
+									<Select
+										showSearch
+										name="priority"
+										// style={{ width: '100%' }}
+										placeholder={'Priority'}
+										allowClear={true}
+									>
+										{priorityTypes?.map(
+											({ value, label }) => (
+												<Option
+													key={value}
+													value={value}
+												>
+													{label}
+												</Option>
+											)
+										)}
+									</Select>
+								</Form.Item>
+							</Col>
+						</Row>
+
+						<Row gutter={8}>
+							<Col span={12}>
+								<Form.Item
+									name="dueDate"
+									label="Due date"
+									hasFeedback={false}
+									showValidateSuccess={false}
+								>
+									<DatePicker
+										name="dueDate"
+										placeholder="Due date"
+										format="DD-MM-YYYY"
+										allowClear={false}
+										showNow={false}
 									/>
 								</Form.Item>
 							</Col>
@@ -123,7 +205,7 @@ function TaskForm() {
 					<FormActionButtons
 						resetForm={resetForm}
 						isSubmitting={isSubmitting}
-						showDebug={false}
+						showDebug={true}
 						saveText="Login"
 						cancelText="Reset"
 					/>

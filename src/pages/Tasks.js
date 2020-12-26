@@ -5,13 +5,13 @@ import React from 'react';
 function Tasks(props) {
 	return (
 		<Row justify="space-around" align="middle">
-			<Col span={9}></Col>
-			<Col span={6}>
+			<Col span={8}></Col>
+			<Col span={8}>
 				<Card>
 					<TaskForm />
 				</Card>
 			</Col>
-			<Col span={9}></Col>
+			<Col span={8}></Col>
 		</Row>
 	);
 }

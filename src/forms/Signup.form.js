@@ -36,7 +36,7 @@ function SignupForm() {
 				resetForm();
 			})
 			.catch((e) => {
-				console.log('updateCamera catch', e);
+				console.log('Signup form catch', e);
 			})
 			.finally(() => {
 				setSubmitting(false);

@@ -43,7 +43,7 @@ function LoginForm() {
 				resetForm();
 			})
 			.catch((e) => {
-				console.log('updateCamera catch', e);
+				console.log('Login form catch', e);
 			})
 			.finally(() => {
 				setSubmitting(false);
