@@ -2,12 +2,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { redirectToLogin } from 'api/authentication';
 import appSlice from './appSlice';
 import { getPreloadedState, saveToLocalStorage } from './localStorage';
+import taskSlice from './taskSlice';
 import userSlice from './userSlice';
+
 // console.log('userSlice reducer 1', userSlice);
 // console.log('appSlice reducer 2', appSlice);
 
 const combinedReducer = combineReducers({
 	app: appSlice,
+	task: taskSlice,
 	user: userSlice,
 });
 

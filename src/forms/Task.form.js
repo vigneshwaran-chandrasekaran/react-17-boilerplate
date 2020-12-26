@@ -4,7 +4,7 @@ import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { userLogin } from 'store/userSlice';
+import { addNewTask } from 'store/taskSlice';
 import * as Yup from 'yup';
 
 const { Option } = Select;
@@ -53,7 +53,7 @@ function TaskForm() {
 
 		console.log('values', values);
 
-		dispatch(userLogin(values, setErrors))
+		dispatch(addNewTask(values, setErrors))
 			.then((response) => {
 				resetForm();
 			})
