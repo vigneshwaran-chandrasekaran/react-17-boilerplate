@@ -13,20 +13,20 @@ const FormSchema = Yup.object({
 	title: Yup.string().required().label('Title'),
 	description: Yup.string().required().label('Description'),
 	dueDate: Yup.string().required().label('Due Date'),
+	type: Yup.number().required().label('Type'),
+	priority: Yup.number().required().label('Priority'),
 	label: Yup.array()
 		.required('Label required')
 		.min(1, 'Min one label required'),
-	priority: Yup.number().required().label('Priority'),
-	type: Yup.number().required().label('Type'),
 });
 
 let initialValues = {
 	title: undefined,
 	description: undefined,
 	dueDate: undefined,
-	label: undefined,
 	type: undefined,
 	priority: undefined,
+	label: undefined,
 };
 
 const options = [
@@ -112,28 +112,23 @@ function TaskForm() {
 						</Row>
 
 						<Row gutter={8} justify="space-between">
-							<Col span={24}>
+							<Col span={12}>
 								<Form.Item
-									name="label"
-									label="Label"
+									name="dueDate"
+									label="Due date"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Checkbox.Group
-										name="label"
-										options={options}
-										defaultValue={[1, 2]}
+									<DatePicker
+										name="dueDate"
+										placeholder="Due date"
+										format="DD-MM-YYYY"
+										allowClear={false}
+										showNow={false}
 									/>
 								</Form.Item>
 							</Col>
-						</Row>
-
-						<Row
-							gutter={8}
-							justify="space-between"
-							className="mt-30"
-						>
-							<Col span={24}>
+							<Col span={12}>
 								<Form.Item
 									name="type"
 									label="Type"
@@ -149,12 +144,8 @@ function TaskForm() {
 							</Col>
 						</Row>
 
-						<Row
-							gutter={8}
-							justify="space-between"
-							className="mt-30"
-						>
-							<Col span={24}>
+						<Row gutter={8}>
+							<Col span={12}>
 								<Form.Item
 									name="priority"
 									label="Priority"
@@ -164,7 +155,7 @@ function TaskForm() {
 									<Select
 										showSearch
 										name="priority"
-										// style={{ width: '100%' }}
+										style={{ width: '100%' }}
 										placeholder={'Priority'}
 										allowClear={true}
 									>
@@ -181,22 +172,18 @@ function TaskForm() {
 									</Select>
 								</Form.Item>
 							</Col>
-						</Row>
 
-						<Row gutter={8}>
 							<Col span={12}>
 								<Form.Item
-									name="dueDate"
-									label="Due date"
+									name="label"
+									label="Label"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<DatePicker
-										name="dueDate"
-										placeholder="Due date"
-										format="DD-MM-YYYY"
-										allowClear={false}
-										showNow={false}
+									<Checkbox.Group
+										name="label"
+										options={options}
+										defaultValue={[1, 2]}
 									/>
 								</Form.Item>
 							</Col>
