@@ -4,7 +4,7 @@ import * as Pages from 'pages';
 import React from 'react';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 export default function Router() {
 	return (
