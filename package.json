@@ -4,7 +4,6 @@
   "private": true,
   "proxy": "https://task-management-rest-app.herokuapp.com/api",
   "dependencies": {
-    "@ant-design/aliyun-theme": "0.0.4",
     "@ant-design/icons": "^4.3.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -14,7 +13,6 @@
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "formik-antd": "^2.0.1",
-    "http-proxy-middleware": "^1.0.6",
     "husky": "^4.3.6",
     "js-sha512": "^0.8.0",
     "lint-staged": "^10.5.3",
@@ -37,8 +35,7 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start-old": "cross-env PORT=3601 react-scripts start --no-cache",
-    "start": "cross-env PORT=3601 react-app-rewired start --no-cache",
+    "start": "cross-env PORT=3601 react-scripts start --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -72,11 +69,7 @@
     ]
   },
   "devDependencies": {
-    "antd-scss-theme-plugin": "^1.0.8",
     "cross-env": "^7.0.3",
-    "env-cmd": "^10.1.0",
-    "less-loader": "^7.2.0",
-    "react-app-rewired": "^2.1.8",
-    "sass-loader": "^10.1.0"
+    "env-cmd": "^10.1.0"
   }
 }
