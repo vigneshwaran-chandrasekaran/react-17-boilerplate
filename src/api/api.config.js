@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getUserInfo } from 'helpers/data-parser';
+import { useAuth } from 'hooks';
 import { isEmpty } from 'lodash';
 import store from 'store';
 
@@ -18,7 +18,7 @@ let userInfo;
 		userInfo = urlParams.get(process.env.REACT_APP_AUTH_KEY);
 		localStorage.setItem(process.env.REACT_APP_AUTH_KEY, userInfo);
 	} else {
-		userInfo = getUserInfo();
+		userInfo = useAuth();
 	}
 })();
 
@@ -39,7 +39,7 @@ axios.interceptors.request.use(
 			 * Sometime token will set on hard refresh,
 			 * on email invite user we don't do hard refresh, on that to set api token
 			 */
-			userInfo = getUserInfo();
+			userInfo = useAuth();
 		}
 
 		// config.headers = {
@@ -49,7 +49,7 @@ axios.interceptors.request.use(
 
 		try {
 			if (!isEmpty(userInfo)) {
-				let token = JSON.parse(userInfo)?.accessToken;
+				let token = userInfo?.accessToken;
 				config.headers.Authorization = `Bearer ${token}`;
 			}
 		} catch (error) {
