@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { getUserInfo } from 'helpers/data-parser';
 import { isEmpty } from 'lodash';
-import { getUserInfo } from '../helpers/data-parser';
 
 let userInfo;
 
