@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getUserInfo } from 'helpers/data-parser';
 import { isEmpty } from 'lodash';
+import store from 'store';
 
 let userInfo;
 
@@ -11,9 +12,9 @@ let userInfo;
 		/**
 		 * when first time login, clear old redux state and localStorage data
 		 */
-		// store.dispatch({
-		// 	type: 'LOGOUT',
-		// });
+		store.dispatch({
+			type: 'user/logout',
+		});
 		userInfo = urlParams.get(process.env.REACT_APP_AUTH_KEY);
 		localStorage.setItem(process.env.REACT_APP_AUTH_KEY, userInfo);
 	} else {
@@ -26,7 +27,7 @@ let userInfo;
  */
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = false; // to allow cookie to api request
-axios.defaults.timeout = 8000; // Max timeout
+axios.defaults.timeout = 28000; // Max timeout
 
 // Add a request interceptor
 axios.interceptors.request.use(
@@ -40,10 +41,11 @@ axios.interceptors.request.use(
 			 */
 			userInfo = getUserInfo();
 		}
-		config.headers = {
-			//'Content-Type': 'application/json',
-		};
-		//config.headers['Access-Control-Allow-Credentials'] = true;
+
+		// config.headers = {
+		// 	//'Content-Type': 'application/json',
+		// };
+		// //config.headers['Access-Control-Allow-Credentials'] = true;
 
 		try {
 			if (!isEmpty(userInfo)) {
