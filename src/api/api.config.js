@@ -49,7 +49,7 @@ axios.interceptors.request.use(
 
 		try {
 			if (!isEmpty(userInfo)) {
-				let token = JSON.parse(userInfo)?.access_token;
+				let token = JSON.parse(userInfo)?.accessToken;
 				config.headers.Authorization = `Bearer ${token}`;
 			}
 		} catch (error) {

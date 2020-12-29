@@ -4,7 +4,7 @@ import qs from 'qs';
 import store from 'store';
 import { hideLoader, showLoader } from 'store/appSlice';
 import axios from './api.config';
-import { handle401Error } from './authentication';
+// import { handle401Error } from './authentication';
 
 class ApiRequestClass {
 	// constructor() {
@@ -71,7 +71,7 @@ class ApiRequestClass {
 					/**
 					 * 401 is authentication error like session failure
 					 */
-					handle401Error();
+					// handle401Error();
 				} else if (status === 422) {
 					/**
 					 * 422 error is form validation error
