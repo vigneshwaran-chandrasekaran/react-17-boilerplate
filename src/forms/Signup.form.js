@@ -4,7 +4,7 @@ import { Form, Input } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { userLogin } from 'store/userSlice';
+import { userSignup } from 'store/userSlice';
 import * as Yup from 'yup';
 
 const FormSchema = Yup.object({
@@ -31,7 +31,7 @@ function SignupForm() {
 
 		console.log('values', values);
 
-		dispatch(userLogin(values, setErrors))
+		dispatch(userSignup(values, setErrors))
 			.then((response) => {
 				resetForm();
 			})

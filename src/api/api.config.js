@@ -7,15 +7,15 @@ let userInfo;
 (() => {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
-	if (urlParams.has('userInfo')) {
+	if (urlParams.has(process.env.REACT_APP_AUTH_KEY)) {
 		/**
 		 * when first time login, clear old redux state and localStorage data
 		 */
 		// store.dispatch({
 		// 	type: 'LOGOUT',
 		// });
-		userInfo = urlParams.get('userInfo');
-		localStorage.setItem('userInfo', userInfo);
+		userInfo = urlParams.get(process.env.REACT_APP_AUTH_KEY);
+		localStorage.setItem(process.env.REACT_APP_AUTH_KEY, userInfo);
 	} else {
 		userInfo = getUserInfo();
 	}
@@ -41,16 +41,9 @@ axios.interceptors.request.use(
 			userInfo = getUserInfo();
 		}
 		config.headers = {
-			// 'Content-Type': 'application/json',
-			// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-			'Access-Control-Expose-Headers':
-				'WWW-Authenticate,Server-Authorization',
-			// crossorigin: true,
+			//'Content-Type': 'application/json',
 		};
-		config.headers['Access-Control-Allow-Origin'] =
-			'https://task-management-rest-app.herokuapp.com';
-		// config.headers['Access-Control-Allow-Credentials'] = true;
-		// config.headers['Access-Control-Allow-Headers'] = '*';
+		//config.headers['Access-Control-Allow-Credentials'] = true;
 
 		try {
 			if (!isEmpty(userInfo)) {

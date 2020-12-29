@@ -58,7 +58,10 @@ function updateTokens(UserData, response) {
 }
 
 export function setLocalData(UserData) {
-	localStorage.setItem('userInfo', JSON.stringify(UserData));
+	localStorage.setItem(
+		process.env.REACT_APP_AUTH_KEY,
+		JSON.stringify(UserData)
+	);
 	console.log('setLocalData came', UserData);
 	if (UserData?.status !== 0) {
 		/**

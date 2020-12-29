@@ -1,5 +1,5 @@
 export function getUserInfo() {
-	return localStorage.getItem('userInfo');
+	return localStorage.getItem(process.env.REACT_APP_AUTH_KEY);
 }
 
 export function getUserData() {

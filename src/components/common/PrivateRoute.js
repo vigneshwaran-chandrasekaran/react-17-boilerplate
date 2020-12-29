@@ -29,7 +29,7 @@ function PrivateRoute({ children, history, location = {}, ...rest }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pathname]);
 
-	if (query.has('userInfo')) {
+	if (query.has(process.env.REACT_APP_AUTH_KEY)) {
 		return (
 			<Redirect
 				to={{

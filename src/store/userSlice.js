@@ -64,6 +64,26 @@ export const userLogin = (values, setErrors) => async (dispatch, getState) => {
 	});
 };
 
+export const userSignup = (values, setErrors) => async (dispatch, getState) => {
+	const { password, ...rest } = values;
+	const newVal = {
+		password: jsSha512(password),
+		...rest,
+	};
+
+	const CREDENTIALS = {
+		url: `/users`,
+		method: 'post',
+		data: newVal,
+		setErrors,
+	};
+
+	return await API.common(CREDENTIALS).then((response) => {
+		setLocalData(response.data);
+		return response;
+	});
+};
+
 export const updateUser = (
 	values,
 	setErrors,
@@ -102,13 +122,16 @@ export const updateUser = (
 };
 
 export function setLocalData(UserData) {
-	localStorage.setItem('userInfo', JSON.stringify(UserData));
+	localStorage.setItem(
+		process.env.REACT_APP_AUTH_KEY,
+		JSON.stringify(UserData)
+	);
 	console.log('setLocalData came', UserData);
 	if (UserData?.status !== 0) {
 		/**
 		 * If user status is 0 means don't refresh the page
 		 */
-		window.location.reload();
+		// window.location.reload();
 	}
 }
 
