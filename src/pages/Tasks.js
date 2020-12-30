@@ -2,7 +2,7 @@ import { Card, Col, Row } from 'antd';
 import { TaskForm } from 'forms';
 import React from 'react';
 
-function Tasks(props) {
+function Tasks() {
 	return (
 		<Row justify="space-around" align="middle">
 			<Col span={6}></Col>
@@ -15,7 +15,5 @@ function Tasks(props) {
 		</Row>
 	);
 }
-
-Tasks.propTypes = {};
 
 export default Tasks;

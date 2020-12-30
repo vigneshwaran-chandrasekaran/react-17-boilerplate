@@ -1,7 +1,8 @@
-import { Col, Row } from 'antd';
+import { Col, message, Row } from 'antd';
 import { Formik } from 'formik';
 import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
 import { FormActionButtons } from 'forms';
+import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addNewTask } from 'store/taskSlice';
@@ -29,26 +30,6 @@ let initialValues = {
 	label: undefined,
 };
 
-const labelOptions = [
-	{ label: 'Apple', value: 1 },
-	{ label: 'Pear', value: 2 },
-	{ label: 'Orange', value: 3 },
-	{ label: 'One', value: 4 },
-	{ label: 'Two', value: 5 },
-];
-
-const priorityTypes = [
-	{ label: 'High', value: 1 },
-	{ label: 'Medium', value: 2 },
-	{ label: 'Low', value: 3 },
-];
-
-const typeOptions = [
-	{ label: 'Task', value: 1 },
-	{ label: 'Story', value: 2 },
-	{ label: 'Bug', value: 3 },
-];
-
 function TaskForm() {
 	const dispatch = useDispatch();
 
@@ -61,6 +42,7 @@ function TaskForm() {
 
 		dispatch(addNewTask(values, setErrors))
 			.then((response) => {
+				message.success('Task added successfully');
 				resetForm();
 			})
 			.catch((e) => {
@@ -80,14 +62,7 @@ function TaskForm() {
 		>
 			{({ setFieldValue, isSubmitting, resetForm }) => (
 				<Form layout="vertical" hideRequiredMark>
-					<div
-						style={{
-							maxHeight: '350px',
-							overflowY: 'auto',
-							overflowX: 'hidden',
-							padding: '10px',
-						}}
-					>
+					<div>
 						<Row gutter={8} justify="space-between">
 							<Col span={24}>
 								<Form.Item
@@ -194,6 +169,7 @@ function TaskForm() {
 									<Checkbox.Group
 										name="label"
 										options={labelOptions}
+										style={{ width: '50%' }}
 									/>
 								</Form.Item>
 							</Col>
