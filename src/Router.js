@@ -40,6 +40,11 @@ export default function Router() {
 										Tasks
 									</Link>
 								</Menu.Item>
+								<Menu.Item key="5">
+									<Link to="/dashboard" className="link">
+										Dashboard
+									</Link>
+								</Menu.Item>
 							</Menu>
 						</Header>
 						<Content>

@@ -1,16 +1,15 @@
-import { getUserData } from 'helpers/data-parser';
+import { useAuth } from 'hooks';
 import React from 'react';
-// import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
 function AuthRoute({ children, ...rest }) {
-	let userData = getUserData();
+	const userData = useAuth();
 
-	if (userData && userData.id && userData.status === 1) {
+	if (userData && userData?._id && userData?.status === 1) {
 		return (
 			<Redirect
 				to={{
-					pathname: '/dashboard',
+					pathname: '/tasks',
 				}}
 			/>
 		);
