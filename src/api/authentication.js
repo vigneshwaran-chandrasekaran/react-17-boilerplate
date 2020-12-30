@@ -43,11 +43,7 @@ export function redirectToLogin() {
 	 */
 
 	localStorage.clear();
-	if (process.env.NODE_ENV === 'development') {
-		window.location = process.env.REACT_APP_LOGIN_URL;
-	} else {
-		window.location = `${process.env.REACT_APP_LOGIN_URL}`;
-	}
+	window.location = process.env.REACT_APP_LOGIN_URL;
 }
 
 function updateTokens(UserData, response) {

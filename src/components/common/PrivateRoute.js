@@ -1,5 +1,5 @@
 import { redirectToLogin } from 'api/authentication';
-import { getUserData } from 'helpers/data-parser';
+import { useAuth } from 'hooks';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, useLocation } from 'react-router-dom';
@@ -13,9 +13,10 @@ function PrivateRoute({ children, history, location = {}, ...rest }) {
 	console.log('location 111', location);
 	const dispatch = useDispatch();
 	const pathData = useLocation();
-	const { pathname = null } = location;
-	let userData = getUserData();
+	const userData = useAuth();
 	const query = useQuery();
+
+	const { pathname = null } = location;
 
 	useEffect(() => {
 		return () => {
@@ -39,7 +40,7 @@ function PrivateRoute({ children, history, location = {}, ...rest }) {
 		);
 	}
 
-	if (userData && userData.id) {
+	if (userData && userData?._id) {
 		return <Route {...rest}>{children}</Route>;
 	} else {
 		redirectToLogin();

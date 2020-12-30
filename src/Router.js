@@ -53,9 +53,9 @@ export default function Router() {
 								<AuthRoute exact path="/signup">
 									<Pages.Signup />
 								</AuthRoute>
-								<AuthRoute exact path="/tasks">
+								<PrivateRoute exact path="/tasks">
 									<Pages.Tasks />
-								</AuthRoute>
+								</PrivateRoute>
 							</Switch>
 						</Content>
 					</Layout>
