@@ -21,8 +21,10 @@ export const userSlice = createSlice({
 			console.log(payload);
 			state.editableUser = payload;
 		},
-
 		setUser: (state, { payload }) => {
+			state.me = payload;
+		},
+		logout: (state, { payload = {} }) => {
 			state.me = payload;
 		},
 	},
@@ -32,6 +34,7 @@ export const {
 	setUserFormVisible,
 	setSelectedUser,
 	setUser,
+	logout,
 } = userSlice.actions;
 
 export const getUser = () => async (dispatch, getState) => {
@@ -82,6 +85,10 @@ export const userSignup = (values, setErrors) => async (dispatch, getState) => {
 		setLocalData(response.data);
 		return response;
 	});
+};
+
+export const userLogout = () => async (dispatch) => {
+	dispatch(logout());
 };
 
 export const updateUser = (

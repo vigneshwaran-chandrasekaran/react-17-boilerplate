@@ -202,7 +202,7 @@ function TaskForm() {
 					<FormActionButtons
 						resetForm={resetForm}
 						isSubmitting={isSubmitting}
-						showDebug={true}
+						showDebug={false}
 						saveText="Login"
 						cancelText="Reset"
 					/>

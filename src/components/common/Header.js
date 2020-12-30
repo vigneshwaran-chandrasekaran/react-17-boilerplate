@@ -1,21 +1,49 @@
+import { PoweroffOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { useAuth } from 'hooks';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { userLogout } from 'store/userSlice';
 
 const { Header } = Layout;
 
+export function findUrlPathId(path) {
+	switch (path) {
+		case '/signup':
+			return '2';
+		case '/login':
+			return '3';
+		case '/tasks':
+			return '4';
+		case '/dashboard':
+			return '5';
+		default:
+			return '1';
+	}
+}
+
 function HeaderCustom() {
 	const userData = useAuth();
+	const dispatch = useDispatch();
+	const [key, setKey] = useState();
+	const location = useLocation();
+
+	useEffect(() => {
+		const pathId = findUrlPathId(location?.pathname);
+		setKey(pathId);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location?.pathname]);
+
+	const handleLogout = () => {
+		console.log('handle logout called');
+		dispatch(userLogout());
+	};
 
 	if (userData && userData?._id) {
 		return (
 			<Header className="header">
-				<Menu
-					theme="dark"
-					mode="horizontal"
-					defaultSelectedKeys={['2']}
-				>
+				<Menu theme="dark" mode="horizontal" selectedKeys={key}>
 					<Menu.Item key="1">
 						<Link to="/home" className="link">
 							Home
@@ -31,6 +59,10 @@ function HeaderCustom() {
 							Dashboard
 						</Link>
 					</Menu.Item>
+					<Menu.Item key="99" onClick={handleLogout} className="link">
+						<PoweroffOutlined />
+						Logout
+					</Menu.Item>
 				</Menu>
 			</Header>
 		);
@@ -38,7 +70,7 @@ function HeaderCustom() {
 
 	return (
 		<Header className="header">
-			<Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+			<Menu theme="dark" mode="horizontal" selectedKeys={key}>
 				<Menu.Item key="1">
 					<Link to="/home" className="link">
 						Home
