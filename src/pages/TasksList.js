@@ -4,17 +4,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks } from 'store/taskSlice';
 
-function getLabel(id) {
-	return labelOptions.find((item) => item.value === id)?.label;
+function getLabel(data) {
+	return labelOptions
+		.filter((item) => data.includes(item.value))
+		.map((item) => item.label)
+		.join(', ');
 }
 
-function getPriority(id) {
-	console.log('getPriority id', id);
-	return priorityTypes.find((item) => item.value === id)?.label;
+function getPriority(data) {
+	return priorityTypes.find((item) => item.value === data)?.label;
 }
 
-function getType(id) {
-	return typeOptions.find((item) => item.value === id)?.label;
+function getType(data) {
+	return typeOptions.find((item) => item.value === data)?.label;
 }
 
 function TasksList() {
@@ -50,9 +52,9 @@ function TasksList() {
 		},
 		{
 			title: 'Label',
-			dataIndex: 'priority', // to get data from api
-			key: 'priority', // for column sorting key
-			render: (priority) => getPriority(priority) || 'NA',
+			dataIndex: 'label', // to get data from api
+			key: 'label', // for column sorting key
+			render: (priority) => getLabel(priority) || 'NA',
 		},
 		{
 			title: 'DueDate',
@@ -64,6 +66,7 @@ function TasksList() {
 	return (
 		<div>
 			<Table
+				size="small"
 				dataSource={tasks}
 				columns={columns}
 				rowKey={(record) => record?._id}
