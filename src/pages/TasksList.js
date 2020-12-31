@@ -1,4 +1,4 @@
-import { SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Table, Tooltip } from 'antd';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import React, { useEffect } from 'react';
@@ -68,7 +68,7 @@ function TasksList() {
 			key: '_id', // for column sorting key
 			render: (_id, record) => (
 				<Tooltip title="Click to edit the record">
-					<Button type="primary" icon={<SearchOutlined />} />
+					<Button type="primary" icon={<EditOutlined />} />
 				</Tooltip>
 			),
 		},
@@ -78,7 +78,7 @@ function TasksList() {
 			key: '_id', // for column sorting key
 			render: (_id, record) => (
 				<Tooltip title="Click to delete the record">
-					<Button danger icon={<SearchOutlined />} />
+					<Button danger icon={<DeleteOutlined />} />
 				</Tooltip>
 			),
 		},
