@@ -1,4 +1,5 @@
-import { Table } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Table, Tooltip } from 'antd';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,9 +58,29 @@ function TasksList() {
 			render: (priority) => getLabel(priority) || 'NA',
 		},
 		{
-			title: 'DueDate',
+			title: 'Due Date',
 			dataIndex: 'dueDate',
 			key: 'dueDate',
+		},
+		{
+			title: 'Edit',
+			dataIndex: '_id', // to get data from api
+			key: '_id', // for column sorting key
+			render: (_id, record) => (
+				<Tooltip title="Click to edit the record">
+					<Button type="primary" icon={<SearchOutlined />} />
+				</Tooltip>
+			),
+		},
+		{
+			title: 'Delete',
+			dataIndex: '_id', // to get data from api
+			key: '_id', // for column sorting key
+			render: (_id, record) => (
+				<Tooltip title="Click to delete the record">
+					<Button danger icon={<SearchOutlined />} />
+				</Tooltip>
+			),
 		},
 	];
 
