@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const taskSlice = createSlice({
-	name: 'user', // name of the reducer
+	name: 'task', // name of the reducer
 	initialState,
 	reducers: {
 		setTasks: (state, { payload }) => {

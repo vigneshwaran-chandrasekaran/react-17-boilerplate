@@ -1,9 +1,39 @@
-import React from 'react';
+import { Table } from 'antd';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTasks } from 'store/taskSlice';
 
-function TasksList(props) {
-	return <div>TasksList</div>;
+function TasksList() {
+	const dispatch = useDispatch();
+	const { tasks = [] } = useSelector((state) => state?.task);
+
+	useEffect(() => {
+		dispatch(getTasks());
+	}, []);
+
+	const columns = [
+		{
+			title: 'Title',
+			dataIndex: 'title',
+			key: 'title',
+		},
+		{
+			title: 'Description',
+			dataIndex: 'description',
+			key: 'description',
+		},
+		{
+			title: 'createdAt',
+			dataIndex: 'createdAt',
+			key: 'createdAt',
+		},
+	];
+
+	return (
+		<div>
+			<Table dataSource={tasks} columns={columns} />;
+		</div>
+	);
 }
-
-TasksList.propTypes = {};
 
 export default TasksList;
