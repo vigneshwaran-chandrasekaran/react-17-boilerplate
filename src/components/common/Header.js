@@ -18,6 +18,8 @@ export function findUrlPathId(path) {
 			return '4';
 		case '/dashboard':
 			return '5';
+		case '/tasks-list':
+			return '6';
 		default:
 			return '1';
 	}
@@ -59,6 +61,12 @@ function HeaderCustom() {
 							Dashboard
 						</Link>
 					</Menu.Item>
+					<Menu.Item key="6">
+						<Link to="/tasks-list" className="link">
+							Tasks List
+						</Link>
+					</Menu.Item>
+
 					<Menu.Item key="99" onClick={handleLogout} className="link">
 						<PoweroffOutlined />
 						Logout

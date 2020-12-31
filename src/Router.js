@@ -32,6 +32,9 @@ export default function Router() {
 						<PrivateRoute path="/dashboard">
 							<Pages.Dashboard />
 						</PrivateRoute>
+						<PrivateRoute path="/tasks-list">
+							<Pages.TasksList />
+						</PrivateRoute>
 						{/* authenticated pages ends*/}
 						<Route path="*">
 							<Pages.NotFound />
