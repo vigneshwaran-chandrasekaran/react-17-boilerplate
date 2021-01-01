@@ -41,7 +41,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.dev react-scripts build",
-    "predeploy": "npm run build:dev",
+    "build:github": "env-cmd -f .env.github react-scripts build",
+    "predeploy": "npm run build:github",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
