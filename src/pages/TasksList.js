@@ -1,5 +1,6 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import { Button, Table, Tooltip } from 'antd';
+import { DeleteRecord } from 'components/pages/tasks';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -76,11 +77,7 @@ function TasksList() {
 			title: 'Delete',
 			dataIndex: '_id', // to get data from api
 			key: '_id', // for column sorting key
-			render: (_id, record) => (
-				<Tooltip title="Click to delete the record">
-					<Button danger icon={<DeleteOutlined />} />
-				</Tooltip>
-			),
+			render: (_id, record) => <DeleteRecord data={record} />,
 		},
 	];
 

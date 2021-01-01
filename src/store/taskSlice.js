@@ -17,7 +17,7 @@ export const taskSlice = createSlice({
 
 export const { setTasks } = taskSlice.actions;
 
-export const getTasks = () => async (dispatch, getState) => {
+export const getTasks = () => async (dispatch) => {
 	const CREDENTIALS = {
 		url: `/tasks`,
 	};
@@ -27,12 +27,24 @@ export const getTasks = () => async (dispatch, getState) => {
 	});
 };
 
-export const addNewTask = (values, setErrors) => async (dispatch, getState) => {
+export const addNewTask = (values, setErrors) => async (dispatch) => {
 	const CREDENTIALS = {
 		url: `/tasks`,
 		method: 'post',
 		data: values,
 		setErrors,
+	};
+
+	return await API.common(CREDENTIALS).then((response) => {
+		dispatch(getTasks());
+		return response;
+	});
+};
+
+export const deleteTask = (_id) => async (dispatch) => {
+	const CREDENTIALS = {
+		url: `/tasks/${_id}`,
+		method: 'delete',
 	};
 
 	return await API.common(CREDENTIALS).then((response) => {
