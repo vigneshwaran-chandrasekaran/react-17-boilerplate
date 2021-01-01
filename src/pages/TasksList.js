@@ -96,7 +96,6 @@ function TasksList() {
 				columns={columns}
 				rowKey={(record) => record?._id}
 			/>
-			;
 		</div>
 	);
 }

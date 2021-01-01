@@ -4,6 +4,7 @@ import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import { useQueryParams } from 'hooks';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNewTask, getTask } from 'store/taskSlice';
@@ -30,6 +31,10 @@ let initialData = {
 	priority: undefined,
 	label: undefined,
 };
+
+function disabledDate(current) {
+	return current && current < moment(moment(), 'DD-MM-YYYY');
+}
 
 function TaskForm() {
 	const [initialValues, setInitialValues] = useState(initialData);
@@ -141,6 +146,7 @@ function TaskForm() {
 										format="DD-MM-YYYY"
 										allowClear={false}
 										showNow={false}
+										disabledDate={disabledDate}
 									/>
 								</Form.Item>
 							</Col>
