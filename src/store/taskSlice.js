@@ -27,10 +27,26 @@ export const getTasks = () => async (dispatch) => {
 	});
 };
 
-export const addNewTask = (values, setErrors) => async (dispatch) => {
+export const getTask = (_id) => async (dispatch) => {
 	const CREDENTIALS = {
-		url: `/tasks`,
-		method: 'post',
+		url: `/tasks/${_id}`,
+	};
+	return await API.common(CREDENTIALS).then((response) => {
+		return response?.data;
+	});
+};
+
+export const addNewTask = (values, _id, setErrors) => async (dispatch) => {
+	let method = 'post';
+	let url = '/tasks';
+
+	if (_id) {
+		method = 'put';
+		url = `/tasks/${_id}`;
+	}
+	const CREDENTIALS = {
+		url,
+		method,
 		data: values,
 		setErrors,
 	};

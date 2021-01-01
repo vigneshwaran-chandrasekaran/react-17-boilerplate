@@ -3,9 +3,10 @@ import { Formik } from 'formik';
 import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
-import React from 'react';
+import { useQueryParams } from 'hooks';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewTask } from 'store/taskSlice';
+import { addNewTask, getTask } from 'store/taskSlice';
 import * as Yup from 'yup';
 
 const { Option } = Select;
@@ -21,7 +22,7 @@ const FormSchema = Yup.object({
 		.min(1, 'Min one label required'),
 });
 
-let initialValues = {
+let initialData = {
 	title: undefined,
 	description: undefined,
 	dueDate: undefined,
@@ -31,7 +32,35 @@ let initialValues = {
 };
 
 function TaskForm() {
+	const [initialValues, setInitialValues] = useState(initialData);
 	const dispatch = useDispatch();
+	const { _id = null } = useQueryParams();
+
+	useEffect(() => {
+		if (_id) {
+			console.log('_id', _id);
+
+			dispatch(getTask(_id))
+				.then((response) => {
+					console.log('response', response);
+					setInitialValues({
+						title: response?.title,
+						description: response?.description,
+						dueDate: response?.dueDate,
+						type: response?.type,
+						priority: response?.priority,
+						label: response?.label,
+					});
+				})
+				.catch((e) => {
+					console.log('Task get catch', e);
+				});
+		}
+
+		return () => {
+			setInitialValues(initialData);
+		};
+	}, [_id]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		/**
@@ -40,10 +69,14 @@ function TaskForm() {
 
 		console.log('values', values);
 
-		dispatch(addNewTask(values, setErrors))
-			.then((response) => {
-				message.success('Task added successfully');
-				resetForm();
+		dispatch(addNewTask(values, _id, setErrors))
+			.then(() => {
+				if (_id) {
+					message.success('Task updated successfully');
+				} else {
+					message.success('Task added successfully');
+					resetForm();
+				}
 			})
 			.catch((e) => {
 				console.log('Task form catch', e);
@@ -52,6 +85,8 @@ function TaskForm() {
 				setSubmitting(false);
 			});
 	}
+
+	console.log('initialValues', initialValues);
 
 	return (
 		<Formik
@@ -178,7 +213,7 @@ function TaskForm() {
 					<FormActionButtons
 						resetForm={resetForm}
 						isSubmitting={isSubmitting}
-						showDebug={false}
+						showDebug={true}
 						saveText="Login"
 						cancelText="Reset"
 					/>
