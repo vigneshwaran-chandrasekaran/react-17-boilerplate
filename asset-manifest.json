@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-17-boilerplate/static/css/main.c0ead542.chunk.css",
+    "main.js": "/react-17-boilerplate/static/js/main.55e9c782.chunk.js",
+    "main.js.map": "/react-17-boilerplate/static/js/main.55e9c782.chunk.js.map",
+    "runtime-main.js": "/react-17-boilerplate/static/js/runtime-main.3fea7220.js",
+    "runtime-main.js.map": "/react-17-boilerplate/static/js/runtime-main.3fea7220.js.map",
+    "static/css/2.85610714.chunk.css": "/react-17-boilerplate/static/css/2.85610714.chunk.css",
+    "static/js/2.bace21a1.chunk.js": "/react-17-boilerplate/static/js/2.bace21a1.chunk.js",
+    "static/js/2.bace21a1.chunk.js.map": "/react-17-boilerplate/static/js/2.bace21a1.chunk.js.map",
+    "static/js/3.30e92b97.chunk.js": "/react-17-boilerplate/static/js/3.30e92b97.chunk.js",
+    "static/js/3.30e92b97.chunk.js.map": "/react-17-boilerplate/static/js/3.30e92b97.chunk.js.map",
+    "index.html": "/react-17-boilerplate/index.html",
+    "static/css/2.85610714.chunk.css.map": "/react-17-boilerplate/static/css/2.85610714.chunk.css.map",
+    "static/css/main.c0ead542.chunk.css.map": "/react-17-boilerplate/static/css/main.c0ead542.chunk.css.map",
+    "static/js/2.bace21a1.chunk.js.LICENSE.txt": "/react-17-boilerplate/static/js/2.bace21a1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3fea7220.js",
+    "static/css/2.85610714.chunk.css",
+    "static/js/2.bace21a1.chunk.js",
+    "static/css/main.c0ead542.chunk.css",
+    "static/js/main.55e9c782.chunk.js"
+  ]
+}
