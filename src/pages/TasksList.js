@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import { DeleteRecord, EditRecord } from 'components/pages/tasks';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import React, { useEffect } from 'react';
@@ -19,6 +19,12 @@ function getPriority(data) {
 function getType(data) {
 	return typeOptions.find((item) => item.value === data)?.label;
 }
+
+const tagColors = {
+	1: 'red',
+	2: 'gold',
+	3: 'green',
+};
 
 function TasksList() {
 	const dispatch = useDispatch();
@@ -43,13 +49,19 @@ function TasksList() {
 			title: 'Type',
 			dataIndex: 'type', // to get data from api
 			key: 'type', // for column sorting key
-			render: (type) => getType(type) || 'NA',
+			render: (type) => (
+				<Tag color={tagColors[type]}>{getType(type) || 'NA'}</Tag>
+			),
 		},
 		{
 			title: 'Priority',
 			dataIndex: 'priority', // to get data from api
 			key: 'priority', // for column sorting key
-			render: (priority) => getPriority(priority) || 'NA',
+			render: (priority) => (
+				<Tag color={tagColors[priority]}>
+					{getPriority(priority) || 'NA'}
+				</Tag>
+			),
 		},
 		{
 			title: 'Label',
