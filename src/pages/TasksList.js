@@ -26,6 +26,12 @@ const tagColors = {
 	3: 'green',
 };
 
+const pagination = {
+	limit: 5,
+	showSizeChanger: true,
+	pageSizeOptions: ['5', '10', '25', '50', '100'],
+};
+
 function TasksList() {
 	const dispatch = useDispatch();
 	const { tasks = [] } = useSelector((state) => state?.task);
@@ -95,6 +101,7 @@ function TasksList() {
 				dataSource={tasks}
 				columns={columns}
 				rowKey={(record) => record?._id}
+				pagination={pagination}
 			/>
 		</div>
 	);

@@ -8,8 +8,9 @@ const { Content } = Layout;
 
 export default function Router() {
 	console.log('process.env.PUBLIC_URL 1', process.env.PUBLIC_URL);
+	// basename={process.env.PUBLIC_URL}
 	return (
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
+		<BrowserRouter>
 			<Loader />
 			<Layout style={{ minHeight: '100vh' }}>
 				<Header />

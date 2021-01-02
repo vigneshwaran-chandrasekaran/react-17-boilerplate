@@ -20,6 +20,9 @@ export const { setTasks } = taskSlice.actions;
 export const getTasks = () => async (dispatch) => {
 	const CREDENTIALS = {
 		url: `/tasks`,
+		queryParams: {
+			all: true,
+		},
 	};
 	return await API.common(CREDENTIALS).then((response) => {
 		dispatch(setTasks(response.data));
