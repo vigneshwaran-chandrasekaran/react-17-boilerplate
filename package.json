@@ -2,7 +2,6 @@
   "name": "react-17-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "homepage-old": "https://vigneshwaran-chandrasekaran.github.io/react-17-boilerplate/",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@reduxjs/toolkit": "^1.5.0",
@@ -13,7 +12,6 @@
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "formik-antd": "^2.0.1",
-    "gh-pages": "^3.1.0",
     "husky": "^4.3.6",
     "js-sha512": "^0.8.0",
     "lint-staged": "^10.5.3",
@@ -40,10 +38,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:dev": "env-cmd -f .env.dev react-scripts build",
-    "build:github": "env-cmd -f .env.github react-scripts build",
-    "predeploy": "npm run build:github",
-    "deploy": "gh-pages -d build"
+    "build:dev": "env-cmd -f .env.dev react-scripts build"
   },
   "eslintConfig": {
     "extends": [
