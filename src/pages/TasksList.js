@@ -1,6 +1,7 @@
 import { Table, Tag } from 'antd';
 import { DeleteRecord, EditRecord } from 'components/pages/tasks';
 import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
+import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTasks } from 'store/taskSlice';
@@ -79,6 +80,8 @@ function TasksList() {
 			title: 'Due Date',
 			dataIndex: 'dueDate',
 			key: 'dueDate',
+
+			render: (dueDate) => moment(dueDate).local().format('DD MMM YYYY'),
 		},
 		{
 			title: 'Edit',
