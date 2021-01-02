@@ -35,7 +35,7 @@ function HeaderCustom() {
 		const pathId = findUrlPathId(location?.pathname);
 		setKey(pathId);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [location?.pathname]);
+	}, [location?.pathname, userData, userData?._id]);
 
 	const handleLogout = () => {
 		console.log('handle logout called');

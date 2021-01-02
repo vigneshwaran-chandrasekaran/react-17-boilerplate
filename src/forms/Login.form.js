@@ -43,8 +43,7 @@ function LoginForm() {
 		dispatch(userLogin(values, setErrors))
 			.then((response) => {
 				resetForm();
-				// history.push('/tasks');
-				window.location = '/tasks';
+				history.push('/tasks');
 			})
 			.catch((e) => {
 				console.log('Login form catch', e);

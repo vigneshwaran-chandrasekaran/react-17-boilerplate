@@ -134,12 +134,6 @@ export function setLocalData(UserData) {
 		JSON.stringify(UserData)
 	);
 	console.log('setLocalData came', UserData);
-	if (UserData?.status !== 0) {
-		/**
-		 * If user status is 0 means don't refresh the page
-		 */
-		// window.location.reload();
-	}
 }
 
 // console.log('userSlice inside', userSlice);
