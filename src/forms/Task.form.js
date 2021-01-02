@@ -65,7 +65,7 @@ function TaskForm() {
 		return () => {
 			setInitialValues(initialData);
 		};
-	}, [_id]);
+	}, [_id, dispatch]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		/**

@@ -7,10 +7,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 const { Content } = Layout;
 
 export default function Router() {
-	console.log('process.env.PUBLIC_URL 1', process.env.PUBLIC_URL);
-	// basename={process.env.PUBLIC_URL}
+	console.log('process.env.PUBLIC_URL ', process.env.PUBLIC_URL);
+
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Loader />
 			<Layout style={{ minHeight: '100vh' }}>
 				<Header />

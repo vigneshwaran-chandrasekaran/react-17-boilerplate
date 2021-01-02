@@ -10,7 +10,6 @@ function useQuery() {
 }
 
 function PrivateRoute({ children, history, location = {}, ...rest }) {
-	console.log('location 111', location);
 	const dispatch = useDispatch();
 	const pathData = useLocation();
 	const userData = useAuth();

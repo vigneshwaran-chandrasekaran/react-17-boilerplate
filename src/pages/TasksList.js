@@ -39,7 +39,7 @@ function TasksList() {
 
 	useEffect(() => {
 		dispatch(getTasks());
-	}, []);
+	}, [dispatch]);
 
 	const columns = [
 		{

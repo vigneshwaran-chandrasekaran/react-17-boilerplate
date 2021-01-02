@@ -43,7 +43,7 @@ export function redirectToLogin() {
 	 */
 
 	localStorage.clear();
-	window.location = process.env.REACT_APP_LOGIN_URL;
+	window.location = window.origin + '/login';
 }
 
 function updateTokens(UserData, response) {
