@@ -3,9 +3,6 @@ import { Formik } from 'formik';
 import { Form, Input } from 'formik-antd';
 import { FormActionButtons } from 'forms';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { userLogin } from 'store/userSlice';
 import * as Yup from 'yup';
 
 const FormSchema = Yup.object({
@@ -28,31 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 	};
 }
 
-function LoginForm() {
-	const dispatch = useDispatch();
-	const history = useHistory();
-
-	// console.log('store initialValues', initialValues);
-	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
-		/**
-		 * below two keys no needed for post call
-		 */
-
-		console.log('values', values);
-
-		dispatch(userLogin(values, setErrors))
-			.then((response) => {
-				resetForm();
-				history.push('/tasks');
-			})
-			.catch((e) => {
-				console.log('Login form catch', e);
-			})
-			.finally(() => {
-				setSubmitting(false);
-			});
-	}
-
+function LoginNewForm({ handleSubmit }) {
 	return (
 		<Formik
 			enableReinitialize
@@ -114,4 +87,4 @@ function LoginForm() {
 	);
 }
 
-export default LoginForm;
+export default LoginNewForm;
