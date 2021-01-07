@@ -25,13 +25,13 @@ if (process.env.NODE_ENV === 'development') {
 	};
 }
 
-function LoginNewForm({ handleSubmit }) {
+function LoginNewForm({ onSubmit }) {
 	return (
 		<Formik
 			enableReinitialize
 			initialValues={initialValues}
 			validationSchema={FormSchema}
-			onSubmit={handleSubmit}
+			onSubmit={onSubmit}
 		>
 			{({ isSubmitting, resetForm }) => (
 				<Form layout="vertical" hideRequiredMark>

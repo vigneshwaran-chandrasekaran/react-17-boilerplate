@@ -42,14 +42,16 @@ function LoginForm() {
 
 		dispatch(userLogin(values, setErrors))
 			.then((response) => {
+				setSubmitting(false);
 				resetForm();
 				history.push('/tasks');
 			})
 			.catch((e) => {
+				setSubmitting(false);
 				console.log('Login form catch', e);
 			})
 			.finally(() => {
-				setSubmitting(false);
+				// setSubmitting(false);
 			});
 	}
 

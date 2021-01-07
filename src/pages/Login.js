@@ -20,13 +20,15 @@ function Login() {
 		dispatch(userLogin(values, setErrors))
 			.then((response) => {
 				resetForm();
+				setSubmitting(false);
 				history.push('/tasks');
 			})
 			.catch((e) => {
+				setSubmitting(false);
 				console.log('Login form catch', e);
 			})
 			.finally(() => {
-				setSubmitting(false);
+				// setSubmitting(false);
 			});
 	}
 
@@ -52,7 +54,7 @@ function Login() {
 			<Col span={8}>
 				<Card>
 					<h2 className="center">Pure Login Form</h2>
-					<LoginNewForm handleSubmit={handleSubmit} />
+					<LoginNewForm onSubmit={handleSubmit} />
 				</Card>
 			</Col>
 		</Row>
