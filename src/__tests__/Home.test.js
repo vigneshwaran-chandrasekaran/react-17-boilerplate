@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import Home from 'pages/Home';
 import React from 'react';
 
@@ -13,8 +13,19 @@ afterEach(cleanup);
  * then compares it to a reference snapshot file stored alongside the test.
  */
 
-it('should take a snapshot', () => {
-	const { asFragment } = render(<Home />);
-	console.log('asFragment 123', asFragment.toString());
-	expect(asFragment(<Home />)).toMatchSnapshot();
+describe('Home page', () => {
+	test('renders Home page component', () => {
+		render(<Home />);
+
+		screen.debug();
+		expect(screen.getByText('Home page')).toBeInTheDocument();
+		expect(screen.getByText(/page/)).toBeInTheDocument();
+		// expect(screen.getByRole('button')).toBeInTheDocument();
+	});
+
+	it('should take a snapshot', () => {
+		const { asFragment } = render(<Home />);
+		console.log('asFragment 123', asFragment.toString());
+		expect(asFragment(<Home />)).toMatchSnapshot();
+	});
 });

@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Home page should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    Home page
+  </div>
+</DocumentFragment>
+`;
+
 exports[`should take a snapshot 1`] = `
 <DocumentFragment>
   <div>

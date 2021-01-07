@@ -1,0 +1,3 @@
+Jest is a test runner, which gives you the ability to run tests with Jest from the command line
+
+
