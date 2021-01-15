@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import qs from 'qs';
 
-function sortObjectByKey(params) {
+export function sortObjectByKey(params) {
 	return _(params).toPairs().sortBy(0).fromPairs().value();
 }
 
