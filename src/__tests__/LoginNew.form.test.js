@@ -37,7 +37,7 @@ beforeAll(() => {
 	// });
 });
 
-test.skip('rendering and submiting a basic Formik form', async () => {
+test('rendering and submiting a basic Formik form', async () => {
 	const handleSubmit = jest.fn();
 	render(<LoginNewForm onSubmit={handleSubmit} />);
 

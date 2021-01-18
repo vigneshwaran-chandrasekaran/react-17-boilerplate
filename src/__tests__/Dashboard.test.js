@@ -8,4 +8,9 @@ test('renders Dashboard', () => {
 	screen.debug();
 	screen.debug(container);
 	expect(getByText('Dashboard')).toBeInTheDocument();
+	expect(container.firstChild).toMatchInlineSnapshot(`
+    <h1>
+Dashboard
+    </h1>
+	`);
 });
