@@ -32,7 +32,7 @@ function SignupForm() {
 		console.log('values', values);
 
 		dispatch(userSignup(values, setErrors))
-			.then((response) => {
+			.then(() => {
 				resetForm();
 			})
 			.catch((e) => {
@@ -50,7 +50,7 @@ function SignupForm() {
 			validationSchema={FormSchema}
 			onSubmit={handleSubmit}
 		>
-			{({ values, isSubmitting, resetForm }) => (
+			{({ isSubmitting, resetForm }) => (
 				<Form layout="vertical" hideRequiredMark>
 					<div
 						style={{

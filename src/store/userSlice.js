@@ -13,7 +13,7 @@ export const userSlice = createSlice({
 	name: 'user', // name of the reducer
 	initialState,
 	reducers: {
-		setUserFormVisible: (state, payload) => {
+		setUserFormVisible: (state) => {
 			let data = state.userFormVisible;
 			state.userFormVisible = !data;
 		},
@@ -37,17 +37,17 @@ export const {
 	logout,
 } = userSlice.actions;
 
-export const getUser = () => async (dispatch, getState) => {
+export const getUser = () => async (dispatch) => {
 	const CREDENTIALS = {
 		url: `/users/me`,
 	};
-	return await API.common(CREDENTIALS).then((response) => {
+	return API.common(CREDENTIALS).then((response) => {
 		dispatch(setUser(response.data));
 		return response;
 	});
 };
 
-export const userLogin = (values, setErrors) => async (dispatch, getState) => {
+export const userLogin = (values, setErrors) => async () => {
 	const { password, ...rest } = values;
 	const newVal = {
 		password: jsSha512(password),
@@ -61,13 +61,13 @@ export const userLogin = (values, setErrors) => async (dispatch, getState) => {
 		setErrors,
 	};
 
-	return await API.common(CREDENTIALS).then((response) => {
+	return API.common(CREDENTIALS).then((response) => {
 		setLocalData(response.data);
 		return response;
 	});
 };
 
-export const userSignup = (values, setErrors) => async (dispatch, getState) => {
+export const userSignup = (values, setErrors) => async () => {
 	const { password, ...rest } = values;
 	const newVal = {
 		password: jsSha512(password),
@@ -81,7 +81,7 @@ export const userSignup = (values, setErrors) => async (dispatch, getState) => {
 		setErrors,
 	};
 
-	return await API.common(CREDENTIALS).then((response) => {
+	return API.common(CREDENTIALS).then((response) => {
 		setLocalData(response.data);
 		return response;
 	});
@@ -118,7 +118,7 @@ export const updateUser = (
 		data: newVal,
 		setErrors,
 	};
-	return await API.common(CREDENTIALS).then((response) => {
+	return API.common(CREDENTIALS).then((response) => {
 		dispatch(setUser(response.data));
 		let text = isNotProfileUpdate
 			? `'User updated successfully`

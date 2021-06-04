@@ -30,7 +30,7 @@ export const getTasks = () => async (dispatch) => {
 	});
 };
 
-export const getTask = (_id) => async (dispatch) => {
+export const getTask = (_id) => async () => {
 	const CREDENTIALS = {
 		url: `/tasks/${_id}`,
 	};

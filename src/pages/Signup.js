@@ -2,7 +2,7 @@ import { Card, Col, Row } from 'antd';
 import { SignupForm } from 'forms';
 import React from 'react';
 
-function Signup(props) {
+function Signup() {
 	return (
 		<Row justify="space-around" align="middle">
 			<Col span={9}></Col>

@@ -9,7 +9,7 @@ function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
 
-function PrivateRoute({ children, history, location = {}, ...rest }) {
+function PrivateRoute({ children, location = {}, ...rest }) {
 	const dispatch = useDispatch();
 	const pathData = useLocation();
 	const userData = useAuth();

@@ -41,7 +41,7 @@ function LoginForm() {
 		console.log('values', values);
 
 		dispatch(userLogin(values, setErrors))
-			.then((response) => {
+			.then(() => {
 				setSubmitting(false);
 				resetForm();
 				history.push('/tasks');

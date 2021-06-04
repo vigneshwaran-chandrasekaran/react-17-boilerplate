@@ -25,7 +25,6 @@ class ApiRequestClass {
 		method = 'get',
 		queryParams = {},
 		setErrors = undefined,
-		...props
 	}) {
 		if (showLoading) {
 			this.handleShowLoader();
