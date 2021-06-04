@@ -25,7 +25,7 @@ describe('Home page', () => {
 
 	it('should take a snapshot', () => {
 		const { asFragment } = render(<Home />);
-		console.log('asFragment 123', asFragment.toString());
+		// console.log('asFragment 123', asFragment.toString());
 		expect(asFragment(<Home />)).toMatchSnapshot();
 	});
 });

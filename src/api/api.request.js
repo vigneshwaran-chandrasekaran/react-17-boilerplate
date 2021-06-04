@@ -52,11 +52,11 @@ class ApiRequestClass {
 	handleErrors(error, setErrors) {
 		if (error) {
 			try {
-				console.log('error handled', error);
+				// console.log('error handled', error);
 				const data = error.response.data;
-				console.log('error data', data);
+				// console.log('error data', data);
 				const status = error.response.status;
-				console.log('error status', status);
+				// console.log('error status', status);
 				let checkNetworkError = JSON.stringify(error);
 				const NetworkError = 'Network Error';
 

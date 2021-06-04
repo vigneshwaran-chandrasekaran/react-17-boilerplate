@@ -7,8 +7,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 const { Content } = Layout;
 
 export default function Router() {
-	console.log('process.env.PUBLIC_URL ', process.env.PUBLIC_URL);
-
 	return (
 		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<Loader />
