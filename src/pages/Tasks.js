@@ -1,6 +1,6 @@
 import { Card, Col, Row } from 'antd';
-import { TaskForm } from 'forms';
 import React from 'react';
+import { TaskForm } from 'forms';
 
 function Tasks() {
 	return (

@@ -1,9 +1,9 @@
 import { PoweroffOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import { useAuth } from 'hooks';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from 'hooks';
 import { userLogout } from 'store/userSlice';
 
 const { Header } = Layout;

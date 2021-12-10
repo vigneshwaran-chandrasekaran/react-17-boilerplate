@@ -1,21 +1,20 @@
 {
   "name": "react-17-boilerplate",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "http://react-17-task-management.s3-website-us-east-1.amazonaws.com",
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
     "@reduxjs/toolkit": "^1.5.0",
+    "@testing-library/dom": "^8.11.1",
     "antd": "^4.12.3",
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "formik-antd": "^2.0.1",
-    "husky": "^4.3.8",
     "js-sha512": "^0.8.0",
-    "lint-staged": "^10.5.4",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
-    "prop-types": "^15.7.2",
     "qs": "^6.9.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -35,8 +34,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:dev": "env-cmd -f .env.dev react-scripts build",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "eslint-fix": "eslint --fix . --ext .js, .",
+    "eslint": "eslint src/**/*.{js,jsx}",
+    "lint": "prettier --check .",
+    "format": "prettier --write \"./**/*.{js,jsx,css,scss,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -62,27 +63,43 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write"
+    "**/*.{js,jsx}": [
+      "eslint --fix",
+      "npm run eslint"
+    ],
+    "**/*.{json,css,scss,md}": [
+      "prettier --write",
+      "npm run format"
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/preset-react": "^7.16.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^4.0.1",
     "@testing-library/user-event": "^12.7.1",
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
-    "eslint": "^7.20.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "fs": "0.0.1-security",
+    "husky": "^4.3.8",
     "i": "^0.3.6",
     "jest": "^26.6.3",
     "jest-dom": "^4.0.0",
+    "lint-staged": "^10.5.4",
     "msw": "^0.25.0",
     "npm": "^6.14.11",
-    "prettier": "^2.2.1",
+    "path": "^0.12.7",
+    "prettier": "^2.5.1",
+    "prop-types": "^15.7.2",
     "react-test-renderer": "^17.0.1"
   }
 }

@@ -1,11 +1,11 @@
 import { Col, Row } from 'antd';
 import { Formik } from 'formik';
 import { Form, Input } from 'formik-antd';
-import { FormActionButtons } from 'forms';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { userSignup } from 'store/userSlice';
 import * as Yup from 'yup';
+import { userSignup } from 'store/userSlice';
+import { FormActionButtons } from 'forms';
 
 const FormSchema = Yup.object({
 	firstName: Yup.string().required().label('Firstname'),
@@ -14,7 +14,7 @@ const FormSchema = Yup.object({
 	password: Yup.string().required().label('Password'),
 });
 
-let initialValues = {
+const initialValues = {
 	firstName: undefined,
 	lastName: undefined,
 	email: undefined,
@@ -67,10 +67,7 @@ function SignupForm() {
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input
-										name="firstName"
-										placeholder="Firstname"
-									/>
+									<Input name="firstName" placeholder="Firstname" />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -81,10 +78,7 @@ function SignupForm() {
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input
-										name="lastName"
-										placeholder="Lastname"
-									/>
+									<Input name="lastName" placeholder="Lastname" />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -101,21 +95,14 @@ function SignupForm() {
 							</Col>
 						</Row>
 
-						<Row
-							gutter={8}
-							justify="space-between"
-							className="mt-30"
-						>
+						<Row gutter={8} justify="space-between" className="mt-30">
 							<Col span={24}>
 								<Form.Item
 									name="password"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input.Password
-										name="password"
-										placeholder="Password"
-									/>
+									<Input.Password name="password" placeholder="Password" />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -124,7 +111,7 @@ function SignupForm() {
 						resetForm={resetForm}
 						isSubmitting={isSubmitting}
 						showDebug={false}
-						saveText="Login"
+						saveText="Signup"
 						cancelText="Reset"
 					/>
 				</Form>

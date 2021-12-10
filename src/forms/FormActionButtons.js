@@ -16,11 +16,7 @@ function FormActionButtons({
 }) {
 	return (
 		<>
-			<Row
-				data-testid="FormActionButtons"
-				type="flex"
-				justify="space-between"
-			>
+			<Row data-testid="FormActionButtons" type="flex" justify="space-between">
 				<Col
 					span={24}
 					style={{
@@ -56,6 +52,13 @@ function FormActionButtons({
 
 FormActionButtons.propTypes = {
 	isSubmitting: PropTypes.bool.isRequired,
+	isValid: PropTypes.bool,
+	showCancel: PropTypes.bool,
+	showDebug: PropTypes.bool,
+	buttonAlignment: PropTypes.string,
+	saveText: PropTypes.string,
+	cancelText: PropTypes.string,
+	resetForm: PropTypes.func,
 };
 
 export { FormActionButtons };

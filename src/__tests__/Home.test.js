@@ -1,6 +1,6 @@
 import { cleanup, render, screen } from '@testing-library/react';
-import Home from 'pages/Home';
 import React from 'react';
+import Home from 'pages/Home';
 
 afterEach(cleanup);
 

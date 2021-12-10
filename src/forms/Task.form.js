@@ -1,14 +1,14 @@
 import { Col, message, Row } from 'antd';
 import { Formik } from 'formik';
 import { Checkbox, DatePicker, Form, Input, Radio, Select } from 'formik-antd';
-import { FormActionButtons } from 'forms';
-import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
-import { useQueryParams } from 'hooks';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewTask, getTask } from 'store/taskSlice';
 import * as Yup from 'yup';
+import { FormActionButtons } from 'forms';
+import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
+import { useQueryParams } from 'hooks';
+import { addNewTask, getTask } from 'store/taskSlice';
 
 const { Option } = Select;
 
@@ -18,12 +18,10 @@ const FormSchema = Yup.object({
 	dueDate: Yup.string().required().label('Due Date'),
 	type: Yup.number().required().label('Type'),
 	priority: Yup.number().required().label('Priority'),
-	label: Yup.array()
-		.required('Label required')
-		.min(1, 'Min one label required'),
+	label: Yup.array().required('Label required').min(1, 'Min one label required'),
 });
 
-let initialData = {
+const initialData = {
 	title: undefined,
 	description: undefined,
 	dueDate: undefined,
@@ -161,10 +159,7 @@ function TaskForm() {
 										name="type"
 										options={typeOptions}
 										onChange={(e) => {
-											setFieldValue(
-												'type',
-												e.target.value
-											);
+											setFieldValue('type', e.target.value);
 										}}
 									/>
 								</Form.Item>
@@ -183,19 +178,14 @@ function TaskForm() {
 										showSearch
 										name="priority"
 										style={{ width: '100%' }}
-										placeholder={'Priority'}
-										allowClear={true}
+										placeholder="Priority"
+										allowClear
 									>
-										{priorityTypes?.map(
-											({ value, label }) => (
-												<Option
-													key={value}
-													value={value}
-												>
-													{label}
-												</Option>
-											)
-										)}
+										{priorityTypes?.map(({ value, label }) => (
+											<Option key={value} value={value}>
+												{label}
+											</Option>
+										))}
 									</Select>
 								</Form.Item>
 							</Col>
@@ -219,7 +209,7 @@ function TaskForm() {
 					<FormActionButtons
 						resetForm={resetForm}
 						isSubmitting={isSubmitting}
-						showDebug={true}
+						showDebug
 						saveText="Save"
 						cancelText="Reset"
 					/>

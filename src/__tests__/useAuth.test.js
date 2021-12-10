@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { renderHook } from '@testing-library/react-hooks';
 import useAuth from 'hooks/useAuth';
 

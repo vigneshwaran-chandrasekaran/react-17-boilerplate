@@ -1,6 +1,6 @@
 import { Card, Col, Row } from 'antd';
-import { SignupForm } from 'forms';
 import React from 'react';
+import { SignupForm } from 'forms';
 
 function Signup() {
 	return (

@@ -24,7 +24,7 @@ export const getTasks = () => async (dispatch) => {
 			all: true,
 		},
 	};
-	return await API.common(CREDENTIALS).then((response) => {
+	await API.common(CREDENTIALS).then((response) => {
 		dispatch(setTasks(response.data));
 		return response;
 	});
@@ -34,9 +34,7 @@ export const getTask = (_id) => async () => {
 	const CREDENTIALS = {
 		url: `/tasks/${_id}`,
 	};
-	return await API.common(CREDENTIALS).then((response) => {
-		return response?.data;
-	});
+	await API.common(CREDENTIALS).then((response) => response?.data);
 };
 
 export const addNewTask = (values, _id, setErrors) => async (dispatch) => {
@@ -54,7 +52,7 @@ export const addNewTask = (values, _id, setErrors) => async (dispatch) => {
 		setErrors,
 	};
 
-	return await API.common(CREDENTIALS).then((response) => {
+	await API.common(CREDENTIALS).then((response) => {
 		dispatch(getTasks());
 		return response;
 	});
@@ -66,7 +64,7 @@ export const deleteTask = (_id) => async (dispatch) => {
 		method: 'delete',
 	};
 
-	return await API.common(CREDENTIALS).then((response) => {
+	await API.common(CREDENTIALS).then((response) => {
 		dispatch(getTasks());
 		return response;
 	});

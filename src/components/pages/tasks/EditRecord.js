@@ -1,7 +1,8 @@
 import { EditOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
-import { useQueryParams } from 'hooks';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useQueryParams } from 'hooks';
 
 function EditRecord({ data }) {
 	const { history } = useQueryParams();
@@ -18,16 +19,14 @@ function EditRecord({ data }) {
 	return (
 		<div>
 			<Tooltip title="Click to edit the record">
-				<Button
-					type="primary"
-					icon={<EditOutlined />}
-					onClick={handleEdit}
-				/>
+				<Button type="primary" icon={<EditOutlined />} onClick={handleEdit} />
 			</Tooltip>
 		</div>
 	);
 }
 
-EditRecord.propTypes = {};
+EditRecord.propTypes = {
+	data: PropTypes.object,
+};
 
 export default EditRecord;

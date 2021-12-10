@@ -31,7 +31,7 @@ class ApiRequestClass {
 		}
 
 		try {
-			let URL = this.addQueryParamsWithUrl(url, queryParams);
+			const URL = this.addQueryParamsWithUrl(url, queryParams);
 			const response = await axios[method](URL, data);
 			return Promise.resolve(response.data);
 		} catch (error) {
@@ -53,11 +53,11 @@ class ApiRequestClass {
 		if (error) {
 			try {
 				// console.log('error handled', error);
-				const data = error.response.data;
+				const { data } = error.response;
 				// console.log('error data', data);
-				const status = error.response.status;
+				const { status } = error.response;
 				// console.log('error status', status);
-				let checkNetworkError = JSON.stringify(error);
+				const checkNetworkError = JSON.stringify(error);
 				const NetworkError = 'Network Error';
 
 				if (checkNetworkError.includes(NetworkError)) {
@@ -88,10 +88,11 @@ class ApiRequestClass {
 				}
 			}
 		}
+		return null;
 	}
 
 	handleCommonErrors(data) {
-		const errors = data.errors;
+		const { errors } = data;
 		toaster.error(errors);
 	}
 
@@ -104,15 +105,16 @@ class ApiRequestClass {
 	}
 
 	handle422Error(data, setErrors) {
-		let serverErrors = data.errors;
+		const serverErrors = data.errors;
 		if (!isEmpty(serverErrors)) {
 			if (setErrors) {
 				setErrors(serverErrors);
-				let val = serverErrors[Object.keys(serverErrors)[0]];
+				const val = serverErrors[Object.keys(serverErrors)[0]];
 				console.log('handle422Error val', val);
 				return val;
 			}
 		}
+		return null;
 	}
 }
 

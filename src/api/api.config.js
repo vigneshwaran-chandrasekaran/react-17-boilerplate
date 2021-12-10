@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useAuth } from 'hooks';
 import { isEmpty } from 'lodash';
+import { useAuth } from 'hooks';
 import store from 'store';
 
 let userInfo;
@@ -31,7 +31,7 @@ axios.defaults.timeout = 28000; // Max timeout
 
 // Add a request interceptor
 axios.interceptors.request.use(
-	function (config) {
+	(config) => {
 		// console.log('request interceptors', config.url);
 		// Do something before request is sent
 		if (isEmpty(userInfo)) {
@@ -49,7 +49,7 @@ axios.interceptors.request.use(
 
 		try {
 			if (!isEmpty(userInfo)) {
-				let token = userInfo?.accessToken;
+				const token = userInfo?.accessToken;
 				config.headers.Authorization = `Bearer ${token}`;
 			}
 		} catch (error) {
@@ -58,24 +58,23 @@ axios.interceptors.request.use(
 
 		return config;
 	},
-	function (error) {
+	(error) => {
 		// Do something with request error
-		return Promise.reject(error);
+		Promise.reject(error);
 	}
 );
 
 // Add a response interceptor
 axios.interceptors.response.use(
-	function (response) {
+	(response) =>
 		// console.log('response interceptors', response);
 		// Any status code that lie within the range of 2xx cause this function to trigger
 		// Do something with response data
-		return response;
-	},
-	function (error) {
+		response,
+	(error) => {
 		// Any status codes that falls outside the range of 2xx cause this function to trigger
 		// Do something with response error
-		return Promise.reject(error);
+		Promise.reject(error);
 	}
 );
 

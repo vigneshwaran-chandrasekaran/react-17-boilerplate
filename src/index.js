@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from 'store';
 import { ThemeProvider } from 'styled-components';
+import store from 'store';
 import 'styles/style.scss';
 import reportWebVitals from './reportWebVitals';
 import Router from './Router';

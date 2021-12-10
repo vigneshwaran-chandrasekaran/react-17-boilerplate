@@ -1,8 +1,9 @@
-import { redirectToLogin } from 'api/authentication';
-import { useAuth } from 'hooks';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useAuth } from 'hooks';
+import { redirectToLogin } from 'api/authentication';
 import { setRecentUrl } from 'store/appSlice';
 
 function useQuery() {
@@ -17,17 +18,18 @@ function PrivateRoute({ children, location = {}, ...rest }) {
 
 	const { pathname = null } = location;
 
-	useEffect(() => {
-		return () => {
+	useEffect(
+		() => () => {
 			/**
 			 * to set last visited page url in redux store
 			 */
 			if (pathname) {
 				dispatch(setRecentUrl(pathname));
 			}
-		};
+		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]);
+		[pathname]
+	);
 
 	if (query.has(process.env.REACT_APP_AUTH_KEY)) {
 		return (
@@ -41,10 +43,14 @@ function PrivateRoute({ children, location = {}, ...rest }) {
 
 	if (userData && userData?._id) {
 		return <Route {...rest}>{children}</Route>;
-	} else {
-		redirectToLogin();
-		return false;
 	}
+	redirectToLogin();
+	return false;
 }
+
+PrivateRoute.propTypes = {
+	location: PropTypes.object,
+	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
 
 export default PrivateRoute;

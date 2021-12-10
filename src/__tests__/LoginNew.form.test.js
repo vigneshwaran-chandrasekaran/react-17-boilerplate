@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import LoginNewForm from 'forms/LoginNew.form';
 import React from 'react';
+import LoginNewForm from 'forms/LoginNew.form';
 
 global.matchMedia =
 	global.matchMedia ||
+	// eslint-disable-next-line func-names
 	function () {
 		return {
 			addListener: jest.fn(),
@@ -41,10 +42,7 @@ test('rendering and submiting a basic Formik form', async () => {
 	const handleSubmit = jest.fn();
 	render(<LoginNewForm onSubmit={handleSubmit} />);
 
-	userEvent.type(
-		screen.getByPlaceholderText(/Email/i),
-		'jhon.dee@someemail.com'
-	);
+	userEvent.type(screen.getByPlaceholderText(/Email/i), 'jhon.dee@someemail.com');
 	userEvent.type(screen.getByPlaceholderText(/Password/i), 'Dee');
 	userEvent.click(screen.getByRole('button', { name: /login/i }));
 

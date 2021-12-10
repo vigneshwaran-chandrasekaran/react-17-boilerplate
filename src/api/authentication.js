@@ -5,7 +5,7 @@ export function handle401Error() {
 	 * get user data from local storage
 	 */
 	try {
-		let userData = getUserData();
+		const userData = getUserData();
 		const { refresh_token = null } = userData;
 		const url = `${process.env.REACT_APP_API_URL}/users/refresh`;
 		let status;
@@ -43,7 +43,7 @@ export function redirectToLogin() {
 	 */
 
 	localStorage.clear();
-	window.location = window.origin + '/login';
+	window.location = `${window.origin}/login`;
 }
 
 function updateTokens(UserData, response) {
@@ -54,10 +54,7 @@ function updateTokens(UserData, response) {
 }
 
 export function setLocalData(UserData) {
-	localStorage.setItem(
-		process.env.REACT_APP_AUTH_KEY,
-		JSON.stringify(UserData)
-	);
+	localStorage.setItem(process.env.REACT_APP_AUTH_KEY, JSON.stringify(UserData));
 	console.log('setLocalData came', UserData);
 	if (UserData?.status !== 0) {
 		/**

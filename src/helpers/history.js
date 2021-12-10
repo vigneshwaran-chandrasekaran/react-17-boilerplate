@@ -18,18 +18,8 @@ export function pushParamsToUrl(history, params) {
 }
 
 export function getParamsFromUrl(history) {
-	let params = qs.parse(history.location.search, {
+	const params = qs.parse(history.location.search, {
 		ignoreQueryPrefix: true,
 	});
 	return sortObjectByKey(params);
-}
-
-function findObjectDifference(old, current) {
-	const newParams = {};
-	Object.entries(current).forEach(([key]) => {
-		if (old[key] !== current[key]) {
-			newParams[key] = current[key];
-		}
-	});
-	return newParams;
 }

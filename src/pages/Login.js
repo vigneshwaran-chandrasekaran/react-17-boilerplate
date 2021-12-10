@@ -1,8 +1,8 @@
 import { Card, Col, Row } from 'antd';
-import { LoginForm, LoginNewForm } from 'forms';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { LoginForm, LoginNewForm } from 'forms';
 import { userLogin } from 'store/userSlice';
 
 function Login() {

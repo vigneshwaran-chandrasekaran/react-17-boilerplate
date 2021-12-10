@@ -1,9 +1,10 @@
 import { Col, Row } from 'antd';
 import { Formik } from 'formik';
 import { Form, Input } from 'formik-antd';
-import { FormActionButtons } from 'forms';
 import React from 'react';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
+import { FormActionButtons } from 'forms';
 
 const FormSchema = Yup.object({
 	email: Yup.string().email().required().label('Email'),
@@ -55,21 +56,14 @@ function LoginNewForm({ onSubmit }) {
 							</Col>
 						</Row>
 
-						<Row
-							gutter={8}
-							justify="space-between"
-							className="mt-30"
-						>
+						<Row gutter={8} justify="space-between" className="mt-30">
 							<Col span={24}>
 								<Form.Item
 									name="password"
 									hasFeedback={false}
 									showValidateSuccess={false}
 								>
-									<Input.Password
-										name="password"
-										placeholder="Password"
-									/>
+									<Input.Password name="password" placeholder="Password" />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -86,5 +80,9 @@ function LoginNewForm({ onSubmit }) {
 		</Formik>
 	);
 }
+
+LoginNewForm.propTypes = {
+	onSubmit: PropTypes.func,
+};
 
 export default LoginNewForm;

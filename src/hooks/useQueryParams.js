@@ -8,7 +8,7 @@ export default function useQueryParams() {
 	const history = useHistory();
 
 	useEffect(() => {
-		let data = qs.parse(location.search, {
+		const data = qs.parse(location.search, {
 			ignoreQueryPrefix: true,
 		});
 		setParams(data);

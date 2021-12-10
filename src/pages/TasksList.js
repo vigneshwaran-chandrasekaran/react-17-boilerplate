@@ -1,9 +1,9 @@
 import { Table, Tag } from 'antd';
-import { DeleteRecord, EditRecord } from 'components/pages/tasks';
-import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
 import moment from 'moment';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { labelOptions, priorityTypes, typeOptions } from 'helpers/enum';
+import { DeleteRecord, EditRecord } from 'components/pages/tasks';
 import { getTasks } from 'store/taskSlice';
 
 function getLabel(data) {
@@ -56,18 +56,14 @@ function TasksList() {
 			title: 'Type',
 			dataIndex: 'type', // to get data from api
 			key: 'type', // for column sorting key
-			render: (type) => (
-				<Tag color={tagColors[type]}>{getType(type) || 'NA'}</Tag>
-			),
+			render: (type) => <Tag color={tagColors[type]}>{getType(type) || 'NA'}</Tag>,
 		},
 		{
 			title: 'Priority',
 			dataIndex: 'priority', // to get data from api
 			key: 'priority', // for column sorting key
 			render: (priority) => (
-				<Tag color={tagColors[priority]}>
-					{getPriority(priority) || 'NA'}
-				</Tag>
+				<Tag color={tagColors[priority]}>{getPriority(priority) || 'NA'}</Tag>
 			),
 		},
 		{
