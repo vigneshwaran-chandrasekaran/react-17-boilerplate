@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createSlice } from '@reduxjs/toolkit';
 import { message as toaster } from 'antd';
 import jsSha512 from 'js-sha512';
@@ -86,40 +87,38 @@ export const userLogout = () => async (dispatch) => {
 	dispatch(logout());
 };
 
-export const updateUser =
-	(values, setErrors, isNotProfileUpdate = false) =>
-	async (dispatch) => {
-		const url = isNotProfileUpdate ? `/users/${values?.id}` : 'users/me';
+export const updateUser = (values, setErrors, isNotProfileUpdate = false) => async (dispatch) => {
+	const url = isNotProfileUpdate ? `/users/${values?.id}` : 'users/me';
 
-		const { password, ...rest } = values;
-		let newVal;
+	const { password, ...rest } = values;
+	let newVal;
 
-		if (password) {
-			newVal = {
-				password: jsSha512(password),
-				...rest,
-			};
-		} else {
-			newVal = {
-				...rest,
-			};
-		}
-
-		const CREDENTIALS = {
-			url,
-			method: 'put',
-			data: newVal,
-			setErrors,
+	if (password) {
+		newVal = {
+			password: jsSha512(password),
+			...rest,
 		};
-		return API.common(CREDENTIALS).then((response) => {
-			dispatch(setUser(response?.data));
-			const text = isNotProfileUpdate
-				? `'User updated successfully`
-				: 'Profile updated successfully';
-			toaster.success(text);
-			return response;
-		});
+	} else {
+		newVal = {
+			...rest,
+		};
+	}
+
+	const CREDENTIALS = {
+		url,
+		method: 'put',
+		data: newVal,
+		setErrors,
 	};
+	return API.common(CREDENTIALS).then((response) => {
+		dispatch(setUser(response?.data));
+		const text = isNotProfileUpdate
+			? `'User updated successfully`
+			: 'Profile updated successfully';
+		toaster.success(text);
+		return response;
+	});
+};
 
 export function setLocalData(UserData) {
 	localStorage.setItem(process.env.REACT_APP_AUTH_KEY, JSON.stringify(UserData));
