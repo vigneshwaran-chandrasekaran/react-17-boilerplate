@@ -37,7 +37,7 @@ export const getUser = () => async (dispatch) => {
 		url: `/users/me`,
 	};
 	return API.common(CREDENTIALS).then((response) => {
-		dispatch(setUser(response.data));
+		dispatch(setUser(response?.data));
 		return response;
 	});
 };
@@ -57,7 +57,7 @@ export const userLogin = (values, setErrors) => async () => {
 	};
 
 	return API.common(CREDENTIALS).then((response) => {
-		setLocalData(response.data);
+		setLocalData(response?.data);
 		return response;
 	});
 };
@@ -77,7 +77,7 @@ export const userSignup = (values, setErrors) => async () => {
 	};
 
 	return API.common(CREDENTIALS).then((response) => {
-		setLocalData(response.data);
+		setLocalData(response?.data);
 		return response;
 	});
 };
@@ -112,7 +112,7 @@ export const updateUser =
 			setErrors,
 		};
 		return API.common(CREDENTIALS).then((response) => {
-			dispatch(setUser(response.data));
+			dispatch(setUser(response?.data));
 			const text = isNotProfileUpdate
 				? `'User updated successfully`
 				: 'Profile updated successfully';
@@ -125,7 +125,5 @@ export function setLocalData(UserData) {
 	localStorage.setItem(process.env.REACT_APP_AUTH_KEY, JSON.stringify(UserData));
 	console.log('setLocalData came', UserData);
 }
-
-// console.log('userSlice inside', userSlice);
 
 export default userSlice.reducer;

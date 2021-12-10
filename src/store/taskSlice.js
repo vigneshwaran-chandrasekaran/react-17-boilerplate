@@ -25,7 +25,7 @@ export const getTasks = () => async (dispatch) => {
 		},
 	};
 	await API.common(CREDENTIALS).then((response) => {
-		dispatch(setTasks(response.data));
+		dispatch(setTasks(response?.data));
 		return response;
 	});
 };
